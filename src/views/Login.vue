@@ -9,9 +9,10 @@
         <small class="helper-text invalid" v-else-if="$v.email.$dirty && !$v.email.email">Введите Email</small>
       </div>
       <div class="input-field">
-        <input id="password" type="password" class="validate" />
+        <input id="password" type="password" v-model.trim="password" :class="{invalid: ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}" />
         <label for="password">Пароль</label>
-        <small class="helper-text invalid">Password</small>
+        <small class="helper-text invalid" v-if="$v.password.$dirty && !$v.password.required">Введите пароль</small>
+        <small class="helper-text invalid" v-else-if="$v.password.$dirty && !$v.password.minLength">Пароль должен быть {{ $v.password.$params.minLength.min }} символов. Сейчас он {{ password.length }} символов</small>
       </div>
     </div>
     <div class="card-action">
