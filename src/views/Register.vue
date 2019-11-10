@@ -37,13 +37,18 @@
         >Пароль должен быть {{ $v.password.$params.minLength.min }} символов. Сейчас он {{ password.length }} символов</small>
       </div>
       <div class="input-field">
-        <input id="name" type="text" v-model.trim="name" :class="{invalid: $v.name.$dirty && !$v.name.required}"/>
+        <input
+          id="name"
+          type="text"
+          v-model.trim="name"
+          :class="{invalid: $v.name.$dirty && !$v.name.required}"
+        />
         <label for="name">Имя</label>
         <small class="helper-text invalid" v-if="$v.name.$dirty && !$v.name.required">Введите имя</small>
       </div>
       <p>
         <label>
-          <input type="checkbox" v-model="agree"/>
+          <input type="checkbox" v-model="agree" />
           <span>С правилами согласен</span>
         </label>
       </p>
@@ -81,7 +86,7 @@ export default {
     agree: { checked: v => v }
   },
   methods: {
-    submitHandler() {
+    async submitHandler() {
       if (this.$v.$invalid) {
         this.$v.$touch();
         return;
@@ -90,8 +95,11 @@ export default {
         email: this.email,
         password: this.password,
         name: this.name
-      }
-      this.$router.push("/");
+      };
+      try {
+        await this.$store.dispatch("register", formData);
+        this.$router.push("/");
+      } catch (e) {}
     }
   }
 };

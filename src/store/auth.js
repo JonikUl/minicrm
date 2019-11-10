@@ -1,10 +1,10 @@
-import firebase from 'firebase/app'
+import firebase from 'firebase/app';
 
 export default {
   actions: {
     async login({
       dispatch,
-      commit
+      commit,
     }, {
       email,
       password,
@@ -15,8 +15,30 @@ export default {
         throw e;
       }
     },
+    async register({
+      dispatch,
+    }, {
+      email,
+      password,
+      name,
+    }) {
+      try {
+        await firebase.auth().createUserWithEmailAndPassword(email, password);
+        const uid = await dispatch('getUid');
+        await firebase.database().ref(`/users/${uid}/info`).set({
+          bill: 10000,
+          name,
+        });
+      } catch (e) {
+        throw e;
+      }
+    },
+    getUid() {
+      const user = firebase.auth().currentUser;
+      return user ? user.uid : null;
+    },
     async logout() {
       await firebase.auth().signOut();
-    }
+    },
   },
 };
