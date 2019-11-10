@@ -12,11 +12,13 @@ export default {
       try {
         await firebase.auth().signInWithEmailAndPassword(email, password);
       } catch (e) {
+        commit('setError', e);
         throw e;
       }
     },
     async register({
       dispatch,
+      commit,
     }, {
       email,
       password,
@@ -30,6 +32,7 @@ export default {
           name,
         });
       } catch (e) {
+        commit('setError', e);
         throw e;
       }
     },
