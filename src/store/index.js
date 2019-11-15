@@ -28,7 +28,7 @@ export default new Vuex.Store({
       const res = await fetch(
         `http://data.fixer.io/api/latest?access_key=${key}&symbols=USD,EUR,RUB`,
       );
-      return await res.json();
+      return res.json();
     },
   },
   modules: {
