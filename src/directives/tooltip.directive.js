@@ -4,6 +4,7 @@ export default {
   }) {
     M.Tooltip.init(el, {
       html: value,
+      position: 'top',
     });
   },
   unbind(el) {
