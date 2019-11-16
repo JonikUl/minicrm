@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import firebase from 'firebase/app';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [{
@@ -11,6 +12,7 @@ export default new Router({
     name: 'home',
     meta: {
       layout: 'main',
+      auth: true,
     },
     component: () => import('./views/Home.vue'),
   }, {
@@ -25,6 +27,7 @@ export default new Router({
     name: 'categories',
     meta: {
       layout: 'main',
+      auth: true,
     },
     component: () => import('./views/Categories.vue'),
   }, {
@@ -39,6 +42,7 @@ export default new Router({
     name: 'detail',
     meta: {
       layout: 'main',
+      auth: true,
     },
     component: () => import('./views/Detail.vue'),
   }, {
@@ -46,6 +50,7 @@ export default new Router({
     name: 'history',
     meta: {
       layout: 'main',
+      auth: true,
     },
     component: () => import('./views/History.vue'),
   }, {
@@ -53,6 +58,7 @@ export default new Router({
     name: 'planning',
     meta: {
       layout: 'main',
+      auth: true,
     },
     component: () => import('./views/Planning.vue'),
   }, {
@@ -60,6 +66,7 @@ export default new Router({
     name: 'profile',
     meta: {
       layout: 'main',
+      auth: true,
     },
     component: () => import('./views/Profile.vue'),
   }, {
@@ -67,7 +74,20 @@ export default new Router({
     name: 'record',
     meta: {
       layout: 'main',
+      auth: true,
     },
     component: () => import('./views/Record.vue'),
   }],
 });
+
+router.beforeEach((to, from, next) => {
+  const currentUser = firebase.auth().currentUser;
+  const requireAuth = to.matched.some(record => record.meta.auth);
+  if (requireAuth && !currentUser) {
+    next('/login?message=login');
+  } else {
+    next();
+  }
+});
+
+export default router;
