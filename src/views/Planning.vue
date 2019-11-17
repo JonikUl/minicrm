@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Планирование</h3>
+      <h3>{{ 'PlanningTitle' | localize}}</h3>
       <h4>{{ info.bill | currency('RUB') }}</h4>
     </div>
 
@@ -18,7 +18,7 @@
           <strong>{{ cat.title }}</strong>
           {{ cat.spend | currency('RUB') }} из {{ cat.limit | currency('RUB') }}
         </p>
-        <div class="progress" v-tooltip="cat.tooltip">
+        <div class="progress" v-tooltip-clear="cat.tooltip">
           <div
             class="determinate"
             :class="[cat.progressColor]"
@@ -33,6 +33,7 @@
 <script>
 import { mapGetters } from "vuex";
 import currencyFilter from "@/filters/currency.filter";
+import localizeFilter from "@/filters/localize.filter";
 
 export default {
   name: "planning",
@@ -59,8 +60,11 @@ export default {
         percent < 60 ? "green" : percent < 100 ? "yellow" : "red";
       const tooltipValue = cat.limit - spend;
       const tooltip = `${
-        tooltipValue < 0 ? "Превышение на" : "Осталось"
+        tooltipValue < 0
+          ? localizeFilter("tooltipExcess")
+          : localizeFilter("tooltipLeft")
       } ${currencyFilter(Math.abs(tooltipValue))}`;
+      const tooltipQuantity = "";
       return {
         ...cat,
         progressPercent,

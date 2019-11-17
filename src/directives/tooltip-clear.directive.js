@@ -1,11 +1,9 @@
-import localizeFilter from '../filters/localize.filter';
-
 export default {
   bind(el, {
     value,
   }) {
     M.Tooltip.init(el, {
-      html: localizeFilter(value),
+      html: value,
       position: 'top',
     });
   },
