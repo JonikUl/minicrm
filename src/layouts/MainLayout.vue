@@ -1,5 +1,5 @@
 <template>
-  <dir>
+  <div>
     <Loader v-if="loading" />
     <div class="app-main-layout" v-else>
       <Navbar @click="isOpen = !isOpen" />
@@ -16,7 +16,7 @@
         </router-link>
       </div>
     </div>
-  </dir>
+  </div>
 </template>
 
 <script>
