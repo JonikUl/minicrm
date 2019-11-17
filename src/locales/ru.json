@@ -44,5 +44,6 @@
   "EnterCategoryName": "Введите название категории",
   "Update": "Обновить",
   "SomethingWentWrong": "Что-то пошло не так",
-  "NoSuchEntry": "Такой записи не существует"
+  "NoSuchEntry": "Такой записи не существует",
+  "Detail": "Подробно"
 }

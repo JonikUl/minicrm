@@ -44,5 +44,6 @@
   "EnterCategoryName": "Enter category name",
   "Update": "Update",
   "SomethingWentWrong": "Something went wrong",
-  "NoSuchEntry": "There is no such entry"
+  "NoSuchEntry": "There is no such entry",
+  "Detail": "Detail"
 }

@@ -84,6 +84,11 @@ export default {
     amount: 1,
     description: ""
   }),
+  metaInfo() {
+    return {
+      title: this.$title("NewRecordTitle")
+    };
+  },
   validations: {
     amount: { minValue: minValue(1) },
     description: { required }

@@ -41,6 +41,11 @@ export default {
     record: null,
     loading: true
   }),
+  metaInfo() {
+    return {
+      title: this.$title("Detail")
+    };
+  },
   async mounted() {
     const id = this.$route.params.id;
     const record = await this.$store.dispatch("fetchRecordById", id);

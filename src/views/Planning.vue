@@ -41,6 +41,11 @@ export default {
     loading: true,
     categories: []
   }),
+  metaInfo() {
+    return {
+      title: this.$title("PlanningTitle")
+    };
+  },
   computed: {
     ...mapGetters(["info"])
   },

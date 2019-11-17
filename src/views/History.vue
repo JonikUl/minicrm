@@ -44,6 +44,11 @@ export default {
     loading: true,
     records: []
   }),
+  metaInfo() {
+    return {
+      title: this.$title("HistoryTitle")
+    };
+  },
   async mounted() {
     this.records = await this.$store.dispatch("fetchRecords");
     const categories = await this.$store.dispatch("fetchCategories");
