@@ -43,5 +43,6 @@
   "Limit": "Лимит",
   "EnterCategoryName": "Введите название категории",
   "Update": "Обновить",
-  "SomethingWentWrong": "Что-то пошло не так"
+  "SomethingWentWrong": "Что-то пошло не так",
+  "NoSuchEntry": "Такой записи не существует"
 }

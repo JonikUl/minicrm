@@ -43,5 +43,6 @@
   "Limit": "Limit",
   "EnterCategoryName": "Enter category name",
   "Update": "Update",
-  "SomethingWentWrong": "Something went wrong"
+  "SomethingWentWrong": "Something went wrong",
+  "NoSuchEntry": "There is no such entry"
 }
