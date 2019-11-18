@@ -17,7 +17,7 @@
           <tbody>
             <tr v-for="cur of currencies" :key="cur">
               <td>{{ cur }}</td>
-              <td>{{ (rates[cur]).toFixed(2) }}</td>
+              <td>{{ (rates[cur]) ? (rates[cur]).toFixed(2) : 1 }}</td>
               <td>{{ date | date('date') }}</td>
             </tr>
           </tbody>
