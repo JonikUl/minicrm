@@ -33,8 +33,9 @@ Vue.directive('tooltip-clear', tooltipClearDirective);
 Vue.component('Loader', Loader);
 Vue.component('Paginate', Paginate);
 
+const firebaseApiKey = process.env.VUE_APP_FIREBASE;
 const firebaseConfig = {
-  apiKey: 'AIzaSyDLpK07KSq38MAlSAXNbR-UP4V96DFg9CI',
+  apiKey: firebaseApiKey,
   authDomain: 'vue-crm-money.firebaseapp.com',
   databaseURL: 'https://vue-crm-money.firebaseio.com',
   projectId: 'vue-crm-money',
